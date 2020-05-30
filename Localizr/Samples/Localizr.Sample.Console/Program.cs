@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using Localizr.Resx;
+using Localizr.Sample.Console.Resources;
 using Localizr.Sample.Resources;
 
 namespace Localizr.Sample.Console
@@ -17,8 +18,9 @@ namespace Localizr.Sample.Console
             System.Console.WriteLine("########################################################################");
             System.Console.WriteLine("Initializing...");
 
-            var localizr = Localizr.For<ResxTextProvider<AppResources>>(builder =>
-                builder.WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US")));
+            var localizr = Localizr.For<ResxTextProvider<ConsoleResources>>(builder =>
+                builder.AddTextProvider<ResxTextProvider<AppResources>>()
+                    .WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US")));
 
             var success = await localizr.InitializeAsync(refreshAvailableCultures: true);
             if (!success)
@@ -50,6 +52,7 @@ namespace Localizr.Sample.Console
                 }
             }
             System.Console.WriteLine($"'key1' in {localizr.CurrentCulture?.DisplayName} : {localizr.GetText("Key1")}");
+            System.Console.WriteLine($"'key2' in {localizr.CurrentCulture?.DisplayName} : {localizr.GetText("Key2")}");
         }
     }
 }

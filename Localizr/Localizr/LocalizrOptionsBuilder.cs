@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Localizr.Resx;
 
 namespace Localizr
 {
     public class LocalizrOptionsBuilder
     {
-        public LocalizrOptionsBuilder(LocalizrOptions localizrOptions)
+        private readonly IList<Type> _textProviderTypes;
+
+        internal LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType)
         {
             LocalizrOptions = localizrOptions;
+            _textProviderTypes = new List<Type>{mainTextProviderType};
         }
 
         internal LocalizrOptions LocalizrOptions { get; }
@@ -47,20 +52,35 @@ namespace Localizr
         }
 
         /// <summary>
+        /// Add some extra resx text providers
+        /// </summary>
+        /// <typeparam name="TResxTextProvider">Type of resx text provider</typeparam>
+        /// <param name="invariantCulture"></param>
+        /// <returns></returns>
+        public virtual LocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
+            where TResxTextProvider : class, IResxTextProvider
+        {
+            LocalizrOptions.TextProviderFactories.Add(defaultInvariantCulture => (TResxTextProvider)Activator.CreateInstance(typeof(TResxTextProvider), invariantCulture ?? defaultInvariantCulture));
+
+            return this;
+        }
+
+        /// <summary>
         /// Add some extra text providers
         /// </summary>
         /// <typeparam name="TTextProvider">Type of text provider</typeparam>
         /// <param name="textProviderFactory"></param>
-        /// <param name="invariantCulture">Culture used as invariant for this text provider (default: null = InvariantCulture)</param>
         /// <returns></returns>
-        public virtual LocalizrOptionsBuilder AddTextProvider<TTextProvider>(
-            Func<ILocalizrOptions, TTextProvider> textProviderFactory, CultureInfo? invariantCulture = null)
+        public virtual LocalizrOptionsBuilder AddTextProvider<TTextProvider>(Func<CultureInfo?, TTextProvider> textProviderFactory)
             where TTextProvider : class, ITextProvider
         {
-            if(LocalizrOptions.TextProviderFactories.Keys.Any(k => k.Method.ReturnType == typeof(TTextProvider)))
-                throw new ArgumentException($"{nameof(TTextProvider)} already added");
+            var textProviderType = typeof(TTextProvider);
+            if(_textProviderTypes.Contains(textProviderType))
+                throw new ArgumentException($"{nameof(TTextProvider)} added already");
 
-            LocalizrOptions.TextProviderFactories.Add(textProviderFactory, invariantCulture);
+            LocalizrOptions.TextProviderFactories.Add(textProviderFactory);
+
+            _textProviderTypes.Add(textProviderType);
 
             return this;
         }

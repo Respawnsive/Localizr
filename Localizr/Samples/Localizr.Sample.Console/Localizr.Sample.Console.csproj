@@ -10,4 +10,19 @@
     <ProjectReference Include="..\Localizr.Sample.Resources\Localizr.Sample.Resources.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\ConsoleResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConsoleResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ConsoleResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConsoleResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
