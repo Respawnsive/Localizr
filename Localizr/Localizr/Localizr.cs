@@ -10,10 +10,7 @@ namespace Localizr
     {
         public static LocalizrManager For<TResxTextProvider>(Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TResxTextProvider : class, IResxTextProvider => For(
-            textProviderOptions =>
-            {
-                return (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions);
-            },
+            textProviderOptions => (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions),
             textProviders => new LocalizrManager(textProviders),
             optionsBuilder);
 
@@ -36,10 +33,6 @@ namespace Localizr
             where TLocalizrManager : class, ILocalizrManager
         {
             var localizrOptions = CreateLocalizrOptions(textProviderFactory, localizrManagerFactory, optionsBuilder);
-            foreach (var optionsTextProvidersFactory in localizrOptions.TextProvidersFactories)
-            {
-                var providerOptions = TextProviderOptions.For(optionsTextProvidersFactory.Method.ReturnType, localizrOptions.DefaultInvariantCulture);
-            }
             var textProviders = localizrOptions.TextProvidersFactories.Select(factory => factory(TextProviderOptions.For(factory.Method.ReturnType, localizrOptions.DefaultInvariantCulture))).ToList();
             var localizrManager = localizrOptions.LocalizrManagerFactory(textProviders);
 

@@ -14,7 +14,7 @@ namespace Localizr
 
         public CultureInfo? InvariantCulture { get; set; }
 
-        internal static ITextProviderOptions For(Type textProviderType, CultureInfo? invariantCulture = null)
+        public static ITextProviderOptions For(Type textProviderType, CultureInfo? invariantCulture = null)
         {
             if (!typeof(ITextProvider).IsAssignableFrom(textProviderType))
                 throw new ArgumentException($"Your text provider class must inherit from ITextProvider interface or derived");
