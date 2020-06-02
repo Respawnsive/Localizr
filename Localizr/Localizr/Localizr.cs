@@ -39,7 +39,7 @@ namespace Localizr
             return (TLocalizrManager)localizrManager;
         }
 
-        private static LocalizrOptions CreateLocalizrOptions<TTextProvider, TLocalizrManager>(Func<CultureInfo?, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
+        private static ILocalizrOptions CreateLocalizrOptions<TTextProvider, TLocalizrManager>(Func<CultureInfo?, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TTextProvider : class, ITextProvider
             where TLocalizrManager : class, ILocalizrManager
         {

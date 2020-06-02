@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localizr.Sample.Resources",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localizr.Sample.Console", "Samples\Localizr.Sample.Console\Localizr.Sample.Console.csproj", "{F4EE3C9B-3205-4C86-9DE3-AA7A51593473}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localizr.Extensions.Microsoft.DependencyInjection", "Localizr.Extensions.Microsoft.DependencyInjection\Localizr.Extensions.Microsoft.DependencyInjection.csproj", "{D0A48FCB-F506-4AB7-B377-05490E23EFAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{F4EE3C9B-3205-4C86-9DE3-AA7A51593473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4EE3C9B-3205-4C86-9DE3-AA7A51593473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4EE3C9B-3205-4C86-9DE3-AA7A51593473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
