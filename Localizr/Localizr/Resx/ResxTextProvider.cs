@@ -18,9 +18,9 @@ namespace Localizr.Resx
         private TaskCompletionSource<IList<CultureInfo>>? _availableCulturesTcs;
         private TaskCompletionSource<IDictionary<string, string>>? _textResourcesTcs;
 
-        public ResxTextProvider(CultureInfo? invariantCulture)
+        public ResxTextProvider(ITextProviderOptions<ResxTextProvider<T>> textProviderOptions)
         {
-            InvariantCulture = invariantCulture;
+            InvariantCulture = textProviderOptions.InvariantCulture;
             _resourceManager = new ResourceManager(typeof(T));
         }
 

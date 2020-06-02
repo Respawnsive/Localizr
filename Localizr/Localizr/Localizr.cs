@@ -10,36 +10,43 @@ namespace Localizr
     {
         public static LocalizrManager For<TResxTextProvider>(Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TResxTextProvider : class, IResxTextProvider => For(
-            defaultInvariantCulture => (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), defaultInvariantCulture),
+            textProviderOptions =>
+            {
+                return (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions);
+            },
             textProviders => new LocalizrManager(textProviders),
             optionsBuilder);
 
-        public static LocalizrManager For<TTextProvider>(Func<CultureInfo?, TTextProvider> textProviderFactory,
+        public static LocalizrManager For<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory,
             Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TTextProvider : class, ITextProvider => For(
             textProviderFactory,
             textProviders => new LocalizrManager(textProviders),
             optionsBuilder);
 
-        public static TLocalizrManager For<TTextProvider, TLocalizrManager>(Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
-            where TTextProvider : class, IResxTextProvider
+        public static TLocalizrManager For<TResxTextProvider, TLocalizrManager>(Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
+            where TResxTextProvider : class, IResxTextProvider
             where TLocalizrManager : class, ILocalizrManager => For(
-            defaultInvariantCulture => (TTextProvider)Activator.CreateInstance(typeof(TTextProvider), defaultInvariantCulture),
+            textProviderOptions => (TResxTextProvider)Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions),
             localizrManagerFactory,
             optionsBuilder);
 
-        public static TLocalizrManager For<TTextProvider, TLocalizrManager>(Func<CultureInfo?, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null) 
+        public static TLocalizrManager For<TTextProvider, TLocalizrManager>(Func<ITextProviderOptions, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null) 
             where TTextProvider : class, ITextProvider
             where TLocalizrManager : class, ILocalizrManager
         {
-            var options = CreateLocalizrOptions(textProviderFactory, localizrManagerFactory, optionsBuilder);
-            var textProviders = options.TextProviderFactories.Select(factory => factory(options.DefaultInvariantCulture)).ToList();
-            var localizrManager = options.LocalizrManagerFactory(textProviders);
+            var localizrOptions = CreateLocalizrOptions(textProviderFactory, localizrManagerFactory, optionsBuilder);
+            foreach (var optionsTextProvidersFactory in localizrOptions.TextProvidersFactories)
+            {
+                var providerOptions = TextProviderOptions.For(optionsTextProvidersFactory.Method.ReturnType, localizrOptions.DefaultInvariantCulture);
+            }
+            var textProviders = localizrOptions.TextProvidersFactories.Select(factory => factory(TextProviderOptions.For(factory.Method.ReturnType, localizrOptions.DefaultInvariantCulture))).ToList();
+            var localizrManager = localizrOptions.LocalizrManagerFactory(textProviders);
 
             return (TLocalizrManager)localizrManager;
         }
 
-        private static ILocalizrOptions CreateLocalizrOptions<TTextProvider, TLocalizrManager>(Func<CultureInfo?, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
+        private static ILocalizrOptions CreateLocalizrOptions<TTextProvider, TLocalizrManager>(Func<ITextProviderOptions, TTextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, TLocalizrManager> localizrManagerFactory, Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TTextProvider : class, ITextProvider
             where TLocalizrManager : class, ILocalizrManager
         {

@@ -24,7 +24,20 @@ namespace Localizr
         public virtual LocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider
         {
-            LocalizrOptions.TextProviderFactories.Add(defaultInvariantCulture => (TResxTextProvider)Activator.CreateInstance(typeof(TResxTextProvider), invariantCulture ?? defaultInvariantCulture));
+            var textProviderType = typeof(TResxTextProvider);
+            if (_textProviderTypes.Contains(textProviderType))
+                throw new ArgumentException($"{nameof(TResxTextProvider)} added already");
+
+            var textProviderFactory = new Func<ITextProviderOptions, TResxTextProvider>(textProviderOptions =>
+            {
+                if (invariantCulture != null)
+                    textProviderOptions.InvariantCulture = invariantCulture;
+
+                return (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions);
+            });
+            LocalizrOptions.TextProvidersFactories.Add(textProviderFactory);
+
+            _textProviderTypes.Add(textProviderType);
 
             return this;
         }
@@ -35,14 +48,14 @@ namespace Localizr
         /// <typeparam name="TTextProvider">Type of text provider</typeparam>
         /// <param name="textProviderFactory"></param>
         /// <returns></returns>
-        public virtual LocalizrOptionsBuilder AddTextProvider<TTextProvider>(Func<CultureInfo?, TTextProvider> textProviderFactory)
+        public virtual LocalizrOptionsBuilder AddTextProvider<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory)
             where TTextProvider : class, ITextProvider
         {
             var textProviderType = typeof(TTextProvider);
             if(_textProviderTypes.Contains(textProviderType))
                 throw new ArgumentException($"{nameof(TTextProvider)} added already");
 
-            LocalizrOptions.TextProviderFactories.Add(textProviderFactory);
+            LocalizrOptions.TextProvidersFactories.Add(textProviderFactory);
 
             _textProviderTypes.Add(textProviderType);
 

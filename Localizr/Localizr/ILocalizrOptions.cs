@@ -6,7 +6,7 @@ namespace Localizr
 {
     public interface ILocalizrOptions
     {
-        IList<Func<CultureInfo?, ITextProvider>> TextProviderFactories { get; }
+        IList<Func<ITextProviderOptions, ITextProvider>> TextProvidersFactories { get; }
         Func<IEnumerable<ITextProvider>, ILocalizrManager> LocalizrManagerFactory { get; }
         bool AutoInitialize { get; internal set; }
         bool TryParents { get; internal set; }

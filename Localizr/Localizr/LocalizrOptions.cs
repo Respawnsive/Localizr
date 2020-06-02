@@ -6,13 +6,13 @@ namespace Localizr
 {
     public class LocalizrOptions : ILocalizrOptions
     {
-        public LocalizrOptions(Func<CultureInfo?, ITextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, ILocalizrManager> localizrManagerFactory)
+        public LocalizrOptions(Func<ITextProviderOptions, ITextProvider> textProviderFactory, Func<IEnumerable<ITextProvider>, ILocalizrManager> localizrManagerFactory)
         {
-            TextProviderFactories = new List<Func<CultureInfo?, ITextProvider>>{ textProviderFactory };
+            TextProvidersFactories = new List<Func<ITextProviderOptions, ITextProvider>> { textProviderFactory };
             LocalizrManagerFactory = localizrManagerFactory;
         }
 
-        public IList<Func<CultureInfo?, ITextProvider>> TextProviderFactories { get; }
+        public IList<Func<ITextProviderOptions, ITextProvider>> TextProvidersFactories { get; }
 
         public Func<IEnumerable<ITextProvider>, ILocalizrManager> LocalizrManagerFactory { get; }
 
