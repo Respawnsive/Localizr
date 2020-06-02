@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Localizr.Extensions.Microsoft.DependencyInjection\Localizr.Extensions.Microsoft.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Localizr\Localizr.csproj" />
     <ProjectReference Include="..\Localizr.Sample.Resources\Localizr.Sample.Resources.csproj" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using Localizr.Resx;
 
 namespace Localizr
 {
-    public class Localizr
+    public static class Localizr
     {
         public static LocalizrManager For<TResxTextProvider>(Action<LocalizrOptionsBuilder>? optionsBuilder = null)
             where TResxTextProvider : class, IResxTextProvider => For(

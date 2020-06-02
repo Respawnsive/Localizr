@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Localizr.Resx;
 using Localizr.Sample.Console.Resources;
 using Localizr.Sample.Resources;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Localizr.Sample.Console
 {
@@ -16,11 +17,36 @@ namespace Localizr.Sample.Console
             System.Console.WriteLine("########################################################################");
             System.Console.WriteLine($"Welcome to Localizr sample Console !!!");
             System.Console.WriteLine("########################################################################");
+            System.Console.WriteLine("");
+            System.Console.WriteLine("Choose one of available configurations:");
+            System.Console.WriteLine("1 - Static instance");
+            System.Console.WriteLine("2 - Microsoft extensions");
+            System.Console.WriteLine("Your choice : ");
+            var readConfigChoice = System.Console.ReadLine();
+            var configChoiceIndex = Convert.ToInt32(readConfigChoice) - 1;
+
             System.Console.WriteLine("Initializing...");
 
-            var localizr = Localizr.For<ResxTextProvider<ConsoleResources>>(builder =>
-                builder.AddTextProvider<ResxTextProvider<AppResources>>()
-                    .WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US")));
+            ILocalizrManager localizr;
+            if (configChoiceIndex == 1)
+            {
+                localizr = Localizr.For<ResxTextProvider<ConsoleResources>>(builder =>
+                        builder.AddTextProvider<ResxTextProvider<AppResources>>()
+                            .WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US"))); 
+            }
+            else
+            {
+                var services = new ServiceCollection();
+
+                services.AddLocalizr<ResxTextProvider<ConsoleResources>>(builder =>
+                    builder.AddTextProvider<ResxTextProvider<AppResources>>()
+                        .WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US")));
+
+                var container = services.BuildServiceProvider(true);
+                var scope = container.CreateScope();
+
+                localizr = scope.ServiceProvider.GetRequiredService<ILocalizrManager>();
+            }
 
             var success = await localizr.InitializeAsync(refreshAvailableCultures: true);
             if (!success)
