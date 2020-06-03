@@ -9,9 +9,7 @@ namespace Localizr
 
         ILocalizrExtendedOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture);
 
-        ILocalizrExtendedOptionsBuilder WithAutoInitialization<TLocalizrInitializationHandler>(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null) where TLocalizrInitializationHandler : ILocalizrInitializationHandler;
-
-        ILocalizrExtendedOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null, Type? initializationHandlerType = null);
+        ILocalizrExtendedOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null);
 
         ILocalizrExtendedOptionsBuilder AddTextProvider<TTextProvider>(CultureInfo? invariantCulture = null)
             where TTextProvider : class, ITextProvider;

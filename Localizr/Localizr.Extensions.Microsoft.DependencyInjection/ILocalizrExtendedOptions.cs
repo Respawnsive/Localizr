@@ -9,6 +9,6 @@ namespace Localizr
     {
         IDictionary<Type, CultureInfo?> TextProviderTypes { get; }
         Type LocalizrManagerType { get; }
-        Type? InitializationHandlerType { get; }
+        Type InitializationHandlerType { get; }
     }
 }

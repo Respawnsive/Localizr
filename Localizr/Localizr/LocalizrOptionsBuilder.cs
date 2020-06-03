@@ -33,17 +33,14 @@ namespace Localizr
         /// <param name="tryParents">Try with parent culture up to invariant when the asked one can't be found (default: true)</param>
         /// <param name="refreshAvailableCultures">Refresh AvailableCultures property during initialization (default: true)</param>
         /// <param name="initializationCulture">Culture used for auto initialization</param>
-        /// <param name="initializationHandlerFactory"></param>
         /// <returns></returns>
         public virtual ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true,
-            bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null,
-            Func<ILocalizrOptions, ILocalizrInitializationHandler>? initializationHandlerFactory = null)
+            bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null)
         {
             Options.AutoInitialize = true;
             Options.TryParents = tryParents;
             Options.RefreshAvailableCultures = refreshAvailableCultures;
             Options.InitializationCulture = initializationCulture;
-            Options.InitializationHandlerFactory = initializationHandlerFactory;
 
             return this;
         }

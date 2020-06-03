@@ -15,7 +15,7 @@ namespace Localizr
     {
         ILocalizrOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture);
 
-        ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null, Func<ILocalizrOptions, ILocalizrInitializationHandler>? initializationHandlerFactory = null);
+        ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null);
 
         ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(
             CultureInfo? invariantCulture = null)

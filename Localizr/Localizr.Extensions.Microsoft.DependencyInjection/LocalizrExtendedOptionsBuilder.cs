@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using Localizr.Resx;
 
 namespace Localizr
 {
@@ -21,19 +18,9 @@ namespace Localizr
             return this;
         }
 
-        public ILocalizrExtendedOptionsBuilder WithAutoInitialization<TLocalizrInitializationHandler>(
-            bool tryParents = true,
-            bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null)
-            where TLocalizrInitializationHandler : ILocalizrInitializationHandler => WithAutoInitialization(tryParents,
-            refreshAvailableCultures, initializationCulture, typeof(TLocalizrInitializationHandler));
-
         public ILocalizrExtendedOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true,
-            CultureInfo? initializationCulture = null, Type? initializationHandlerType = null)
+            CultureInfo? initializationCulture = null)
         {
-            if (initializationHandlerType != null && !typeof(ILocalizrInitializationHandler).IsAssignableFrom(initializationHandlerType))
-                throw new ArgumentException($"Your initialization handler class must inherit from {nameof(ILocalizrInitializationHandler)} interface or derived");
-
-            Options.InitializationHandlerType = initializationHandlerType;
             Options.AutoInitialize = true;
             Options.TryParents = tryParents;
             Options.RefreshAvailableCultures = refreshAvailableCultures;
