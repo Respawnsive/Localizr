@@ -10,7 +10,7 @@ namespace Localizr
     {
         private readonly IList<Type> _textProviderTypes;
 
-        internal LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType) : base(localizrOptions)
+        public LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType) : base(localizrOptions)
         {
             _textProviderTypes = new List<Type>{mainTextProviderType};
         }

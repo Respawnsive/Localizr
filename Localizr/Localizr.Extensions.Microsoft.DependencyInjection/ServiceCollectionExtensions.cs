@@ -13,21 +13,13 @@ namespace Localizr
             typeof(LocalizrInitializationHandler),
             typeof(LocalizrManager), optionsBuilder);
 
-        public static IServiceCollection AddLocalizrWithHandler<TTextProvider, TLocalizrInitializationHandler>(
+        public static IServiceCollection AddLocalizr<TTextProvider, TLocalizrInitializationHandler>(
             this IServiceCollection services,
             Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null)
             where TTextProvider : class, ITextProvider
             where TLocalizrInitializationHandler : class, ILocalizrInitializationHandler => AddLocalizr(services,
             typeof(TTextProvider),
             typeof(TLocalizrInitializationHandler), typeof(LocalizrManager), optionsBuilder);
-
-        public static IServiceCollection AddLocalizrWithManager<TTextProvider, TLocalizrManager>(
-            this IServiceCollection services,
-            Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null)
-            where TTextProvider : class, ITextProvider
-            where TLocalizrManager : class, ILocalizrManager => AddLocalizr(services, typeof(TTextProvider),
-            typeof(LocalizrInitializationHandler),
-            typeof(TLocalizrManager), optionsBuilder);
 
         public static IServiceCollection AddLocalizr<TTextProvider, TLocalizrInitializationHandler, TLocalizrManager>(
             this IServiceCollection services,
@@ -43,27 +35,30 @@ namespace Localizr
             typeof(LocalizrInitializationHandler),
             typeof(LocalizrManager), optionsBuilder);
 
-        public static IServiceCollection AddLocalizrWithHandler(this IServiceCollection services, Type textProviderType,
+        public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType,
             Type initializationHandlerType,
             Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null) => AddLocalizr(services, textProviderType,
             initializationHandlerType,
             typeof(LocalizrManager), optionsBuilder);
 
-        public static IServiceCollection AddLocalizrWithManager(this IServiceCollection services, Type textProviderType,
-            Type localizrManagerType,
-            Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null) => AddLocalizr(services, textProviderType,
-            typeof(LocalizrInitializationHandler),
-            localizrManagerType, optionsBuilder);
-
-        public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType, Type initializationHandlerType, Type localizrManagerType, Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null)
+        public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType,
+            Type initializationHandlerType, Type localizrManagerType,
+            Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null)
         {
             if (!typeof(ITextProvider).IsAssignableFrom(textProviderType))
-                throw new ArgumentException($"Your text provider class must inherit from {nameof(ITextProvider)} interface or derived");
+                throw new ArgumentException(
+                    $"Your text provider class must inherit from {nameof(ITextProvider)} interface or derived");
+
+            if (!typeof(ILocalizrInitializationHandler).IsAssignableFrom(initializationHandlerType))
+                throw new ArgumentException(
+                    $"Your initialization handler class must inherit from {nameof(ILocalizrInitializationHandler)} interface or derived");
 
             if (!typeof(ILocalizrManager).IsAssignableFrom(localizrManagerType))
-                throw new ArgumentException($"Your localizr manager class must inherit from {nameof(ILocalizrManager)} interface or derived");
+                throw new ArgumentException(
+                    $"Your localizr manager class must inherit from {nameof(ILocalizrManager)} interface or derived");
 
-            var localizrOptions = CreateLocalizrExtendedOptions(textProviderType, initializationHandlerType, localizrManagerType, optionsBuilder);
+            var localizrOptions = CreateLocalizrExtendedOptions(textProviderType, initializationHandlerType,
+                localizrManagerType, optionsBuilder);
             services.AddSingleton<ILocalizrOptions>(localizrOptions);
 
             foreach (var optionsTextProviderType in localizrOptions.TextProviderTypes)
@@ -83,7 +78,8 @@ namespace Localizr
             {
                 var intermediateServiceProvider = services.BuildServiceProvider();
                 var localizrManager = intermediateServiceProvider.GetRequiredService<ILocalizrManager>();
-                localizrManager.InitializeAsync(localizrOptions.InitializationCulture, localizrOptions.TryParents, localizrOptions.RefreshAvailableCultures);
+                localizrManager.InitializeAsync(localizrOptions.InitializationCulture, localizrOptions.TryParents,
+                    localizrOptions.RefreshAvailableCultures);
                 services.Replace(new ServiceDescriptor(typeof(ILocalizrManager), localizrManager));
             }
 

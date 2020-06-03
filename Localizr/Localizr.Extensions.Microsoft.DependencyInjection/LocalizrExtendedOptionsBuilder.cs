@@ -5,7 +5,7 @@ namespace Localizr
 {
     public class LocalizrExtendedOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrExtendedOptions>, ILocalizrExtendedOptionsBuilder
     {
-        internal LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions) : base(localizrOptions)
+        public LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions) : base(localizrOptions)
         {
         }
 

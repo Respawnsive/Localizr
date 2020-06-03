@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Shiny</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Shiny.Core" Version="1.1.0.1570" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Localizr.Extensions.Microsoft.DependencyInjection\Localizr.Extensions.Microsoft.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Localizr\Localizr.csproj" />
+  </ItemGroup>
+
+</Project>
