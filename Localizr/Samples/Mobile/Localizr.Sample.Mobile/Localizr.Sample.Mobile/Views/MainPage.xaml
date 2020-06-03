@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Localizr.Sample.Mobile.Views.MainPage"
+             xmlns:viewModels="clr-namespace:Localizr.Sample.Mobile.ViewModels;assembly=Localizr.Sample.Mobile"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:DataType="viewModels:MainPageViewModel"
+             Title="{Binding Title}">
+
+    <Grid>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
+            <Picker ItemsSource="{Binding Cultures}" 
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    SelectedItem="{Binding SelectedCulture}"/>
+            <StackLayout Orientation="Vertical">
+                <Label Text="{Binding [Key1]}" />
+                <Label Text="{Binding [Key2]}" />
+            </StackLayout>
+        </StackLayout>
+        <Label VerticalOptions="End" HorizontalOptions="Center" Text="Unlocalized keys for selected language appear as [THE_KEY]" />
+    </Grid>
+
+</ContentPage>

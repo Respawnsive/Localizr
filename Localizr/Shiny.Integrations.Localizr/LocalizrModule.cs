@@ -22,7 +22,7 @@ namespace Shiny
             if (!typeof(ILocalizrManager).IsAssignableFrom(localizrManagerType))
                 throw new ArgumentException($"Your localizr manager class must inherit from {nameof(ILocalizrManager)} interface or derived");
 
-            _localizrOptions = CreateLocalizrExtendedOptions(textProviderType, localizrManagerType, initializationHandlerType, optionsBuilder);
+            _localizrOptions = CreateLocalizrExtendedOptions(textProviderType, initializationHandlerType, localizrManagerType, optionsBuilder);
         }
 
         public override void Register(IServiceCollection services)

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc.Extensions" Version="7.2.0.1054" />
+    <PackageReference Include="ReactiveUI.Fody" Version="11.4.1" />
+    <PackageReference Include="Shiny.Prism" Version="7.2.0.1054" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Localizr.Extensions.Microsoft.DependencyInjection\Localizr.Extensions.Microsoft.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\..\..\Localizr\Localizr.csproj" />
+    <ProjectReference Include="..\..\..\..\Shiny.Integrations.Localizr\Shiny.Integrations.Localizr.csproj" />
+    <ProjectReference Include="..\..\..\Localizr.Sample.Resources\Localizr.Sample.Resources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\MobileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MobileResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\MobileResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MobileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
