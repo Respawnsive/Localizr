@@ -16,14 +16,14 @@ namespace Localizr
 
         public Func<IEnumerable<ITextProvider>, ILocalizrManager> LocalizrManagerFactory { get; }
 
-        bool ILocalizrOptions.AutoInitialize { get; set; }
+        bool ILocalizrOptions.AutoInitialize { get; set; } = true;
 
-        bool ILocalizrOptions.TryParents { get; set; }
+        bool ILocalizrOptions.TryParents { get; set; } = true;
 
-        bool ILocalizrOptions.RefreshAvailableCultures { get; set; }
+        bool ILocalizrOptions.RefreshAvailableCultures { get; set; } = false;
 
-        CultureInfo? ILocalizrOptions.InitializationCulture { get; set; }
+        CultureInfo? ILocalizrOptions.InitializationCulture { get; set; } = null;
 
-        CultureInfo? ILocalizrOptions.DefaultInvariantCulture { get; set; }
+        CultureInfo? ILocalizrOptions.DefaultInvariantCulture { get; set; } = null;
     }
 }

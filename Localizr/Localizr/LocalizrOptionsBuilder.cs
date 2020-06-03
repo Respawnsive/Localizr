@@ -6,7 +6,7 @@ using Localizr.Resx;
 
 namespace Localizr
 {
-    public class LocalizrOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrOptions>
+    public class LocalizrOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrOptions>, ILocalizrOptionsBuilder
     {
         private readonly IList<Type> _textProviderTypes;
 
@@ -21,7 +21,7 @@ namespace Localizr
         /// <typeparam name="TResxTextProvider">Type of resx text provider</typeparam>
         /// <param name="invariantCulture"></param>
         /// <returns></returns>
-        public virtual LocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
+        public virtual ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider
         {
             var textProviderType = typeof(TResxTextProvider);
@@ -48,7 +48,7 @@ namespace Localizr
         /// <typeparam name="TTextProvider">Type of text provider</typeparam>
         /// <param name="textProviderFactory"></param>
         /// <returns></returns>
-        public virtual LocalizrOptionsBuilder AddTextProvider<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory)
+        public virtual ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory)
             where TTextProvider : class, ITextProvider
         {
             var textProviderType = typeof(TTextProvider);
