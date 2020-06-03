@@ -16,12 +16,45 @@ namespace Localizr
         }
 
         /// <summary>
+        /// Specify the default culture used as invariant for all text providers
+        /// </summary>
+        /// <param name="defaultInvariantCulture">Culture used as invariant (default: null = InvariantCulture)</param>
+        /// <returns></returns>
+        public ILocalizrOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture)
+        {
+            Options.DefaultInvariantCulture = defaultInvariantCulture;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adjust auto initialization settings
+        /// </summary>
+        /// <param name="tryParents">Try with parent culture up to invariant when the asked one can't be found (default: true)</param>
+        /// <param name="refreshAvailableCultures">Refresh AvailableCultures property during initialization (default: true)</param>
+        /// <param name="initializationCulture">Culture used for auto initialization</param>
+        /// <param name="initializationHandlerFactory"></param>
+        /// <returns></returns>
+        public virtual ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true,
+            bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null,
+            Func<ILocalizrOptions, ILocalizrInitializationHandler>? initializationHandlerFactory = null)
+        {
+            Options.AutoInitialize = true;
+            Options.TryParents = tryParents;
+            Options.RefreshAvailableCultures = refreshAvailableCultures;
+            Options.InitializationCulture = initializationCulture;
+            Options.InitializationHandlerFactory = initializationHandlerFactory;
+
+            return this;
+        }
+
+        /// <summary>
         /// Add some extra resx text providers
         /// </summary>
         /// <typeparam name="TResxTextProvider">Type of resx text provider</typeparam>
         /// <param name="invariantCulture"></param>
         /// <returns></returns>
-        public virtual ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
+        public virtual ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider
         {
             var textProviderType = typeof(TResxTextProvider);
@@ -35,7 +68,7 @@ namespace Localizr
 
                 return (TResxTextProvider) Activator.CreateInstance(typeof(TResxTextProvider), textProviderOptions);
             });
-            LocalizrOptions.TextProvidersFactories.Add(textProviderFactory);
+            Options.TextProvidersFactories.Add(textProviderFactory);
 
             _textProviderTypes.Add(textProviderType);
 
@@ -48,14 +81,14 @@ namespace Localizr
         /// <typeparam name="TTextProvider">Type of text provider</typeparam>
         /// <param name="textProviderFactory"></param>
         /// <returns></returns>
-        public virtual ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory)
+        public virtual ILocalizrOptionsBuilder AddTextProvider<TTextProvider>(Func<ITextProviderOptions, TTextProvider> textProviderFactory)
             where TTextProvider : class, ITextProvider
         {
             var textProviderType = typeof(TTextProvider);
             if(_textProviderTypes.Contains(textProviderType))
                 throw new ArgumentException($"{nameof(TTextProvider)} added already");
 
-            LocalizrOptions.TextProvidersFactories.Add(textProviderFactory);
+            Options.TextProvidersFactories.Add(textProviderFactory);
 
             _textProviderTypes.Add(textProviderType);
 

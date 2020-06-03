@@ -8,21 +8,20 @@ namespace Localizr
 {
     public interface ILocalizrOptionsBuilder<out TLocalizrOptions> where TLocalizrOptions : class, ILocalizrOptions
     {
-        public TLocalizrOptions LocalizrOptions { get; }
-
-        ILocalizrOptionsBuilder<TLocalizrOptions> WithAutoInitialization(bool autoInitialize = true,
-            bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null);
-
-        ILocalizrOptionsBuilder<TLocalizrOptions> WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture);
+        public ILocalizrOptions LocalizrOptions { get; }
     }
 
     public interface ILocalizrOptionsBuilder : ILocalizrOptionsBuilder<LocalizrOptions>
     {
-        ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TResxTextProvider>(
+        ILocalizrOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture);
+
+        ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null, Func<ILocalizrOptions, ILocalizrInitializationHandler>? initializationHandlerFactory = null);
+
+        ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(
             CultureInfo? invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider;
 
-        ILocalizrOptionsBuilder<LocalizrOptions> AddTextProvider<TTextProvider>(
+        ILocalizrOptionsBuilder AddTextProvider<TTextProvider>(
             Func<ITextProviderOptions, TTextProvider> textProviderFactory)
             where TTextProvider : class, ITextProvider;
     }

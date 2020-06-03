@@ -9,13 +9,13 @@ namespace Localizr
     public interface ILocalizrManager
     {
         /// <summary>
-        /// Observable localization initialization state
+        /// Observable localizr initialization state
         /// </summary>
-        /// <returns>Localization state</returns>
-        IObservable<LocalizrState> WhenLocalizationStatusChanged();
+        /// <returns>Localizr state</returns>
+        IObservable<LocalizrState> WhenLocalizrStatusChanged();
 
         /// <summary>
-        /// Current localization state
+        /// Current localizr state
         /// </summary>
         LocalizrState Status { get; }
 
@@ -43,7 +43,7 @@ namespace Localizr
         Task<bool> RefreshAvailableCulturesAsync(CancellationToken token = default);
 
         /// <summary>
-        /// Initialize localization plugin
+        /// Initialize localizr
         /// </summary>
         /// <param name="culture">Default initialization culture (default: null = CurrentUICulture)</param>
         /// <param name="tryParents">Try with parent culture up to invariant when the asked one can't be found (default: true)</param>

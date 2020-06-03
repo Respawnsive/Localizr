@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Localizr
 {
@@ -24,12 +25,13 @@ namespace Localizr
         public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType, Type localizrManagerType, Action<ILocalizrExtendedOptionsBuilder>? optionsBuilder = null)
         {
             if (!typeof(ITextProvider).IsAssignableFrom(textProviderType))
-                throw new ArgumentException($"Your text provider class must inherit from ITextProvider interface or derived");
+                throw new ArgumentException($"Your text provider class must inherit from {nameof(ITextProvider)} interface or derived");
 
             if (!typeof(ILocalizrManager).IsAssignableFrom(localizrManagerType))
-                throw new ArgumentException($"Your localizr manager class must inherit from ILocalizrManager interface or derived");
+                throw new ArgumentException($"Your localizr manager class must inherit from {nameof(ILocalizrManager)} interface or derived");
 
             var localizrOptions = CreateLocalizrExtendedOptions(textProviderType, localizrManagerType, optionsBuilder);
+            services.AddSingleton<ILocalizrOptions>(localizrOptions);
 
             foreach (var optionsTextProviderType in localizrOptions.TextProviderTypes)
             {
@@ -40,14 +42,17 @@ namespace Localizr
                 services.AddSingleton(typeof(ITextProvider), optionsTextProviderType.Key);
             }
 
+            services.AddSingleton(typeof(ILocalizrInitializationHandler),
+                localizrOptions.InitializationHandlerType ?? typeof(LocalizrInitializationHandler));
+
             services.AddSingleton(typeof(ILocalizrManager), localizrOptions.LocalizrManagerType);
 
             if (localizrOptions.AutoInitialize)
             {
                 var intermediateServiceProvider = services.BuildServiceProvider();
                 var localizrManager = intermediateServiceProvider.GetRequiredService<ILocalizrManager>();
-                Task.Run(async () => await localizrManager.InitializeAsync(localizrOptions.InitializationCulture,
-                    localizrOptions.TryParents, localizrOptions.RefreshAvailableCultures).ConfigureAwait(false));
+                localizrManager.InitializeAsync(localizrOptions.InitializationCulture, localizrOptions.TryParents, localizrOptions.RefreshAvailableCultures);
+                services.Replace(new ServiceDescriptor(typeof(ILocalizrManager), localizrManager));
             }
 
             return services;

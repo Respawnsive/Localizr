@@ -14,5 +14,6 @@ namespace Localizr
 
         public IDictionary<Type, CultureInfo?> TextProviderTypes { get; }
         public Type LocalizrManagerType { get; }
+        public Type? InitializationHandlerType { get; set; } = null;
     }
 }
