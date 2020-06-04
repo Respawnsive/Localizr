@@ -1,5 +1,5 @@
 # Localizr
-Localizr is a .Net Standard 2.0 library helping to manage various text resources type (resx, json, xml, database, etc), from various origin (assembly, web service, database, etc), for various cultures, and all mixable.
+Localizr is a .Net Standard 2.0 library helpful when managing various text resources type (resx, json, xml, database, etc), from various origin (assembly, web service, database, etc), for various cultures, and all mixable.
 
 ## Libraries
 
