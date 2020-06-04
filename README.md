@@ -47,7 +47,6 @@ myContainer.SomeFactoryRegistrationMethod<ILocalizrManager>(() => Localizr.For<R
 
 In your Startup class, add the following:
 ```csharp
-
 // This is an example where YourResourcesDesignerClass is the class name of the resx .Designer.cs auto generated file
 public override void ConfigureServices(IServiceCollection services)
 {
@@ -64,7 +63,6 @@ public override void ConfigureServices(IServiceCollection services)
 
    1. Inject ILocalizrManager where you need it - e.g. into a ViewModel contructor
    ```csharp
-
     public class YourViewModel
     {
         private readonly ILocalizrManager _localizrManager;
@@ -80,7 +78,6 @@ public override void ConfigureServices(IServiceCollection services)
 
     2. Just bind to [YourKeyToLocalize]
     ```xml
-
     <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -173,7 +170,6 @@ A scenario could be when you want to provide default resx built-in for app start
 
 As Localizr doesn't know anything about your custom text provider class, you have to supply a factory:
 ```csharp
-
 // This is an example where YourResourcesDesignerClass is the class name of the resx .Designer.cs auto generated file and
 // where YourDbTextProviderClass is your local data access service inheriting form ITextProvider interface
 Localizr.For<YourDbTextProviderClass>(providerOptions => new YourDbTextProviderClass(providerOptions), optionsBuilder =>
@@ -184,10 +180,9 @@ Localizr.For<YourDbTextProviderClass>(providerOptions => new YourDbTextProviderC
 
 Localizr will register YourDbTextProviderClass as ITextProvider into your container, so nothing to take care about except all YourDbTextProviderClass constructor parameters must be resolvable and registered:
 ```csharp
-
 // This is an example where YourResourcesDesignerClass is the class name of the resx .Designer.cs auto generated file and
 // where YourDbTextProvider is your local data access service inheriting form ITextProvider interface
-Localizr.For<YourDbTextProviderClass>(optionsBuilder =>
+services.AddLocalizr<YourDbTextProviderClass>(optionsBuilder =>
                 optionsBuilder.AddTextProvider<ResxTextProvider<YourResourcesDesignerClass>>(invariantCulture: null));
 ```
 
