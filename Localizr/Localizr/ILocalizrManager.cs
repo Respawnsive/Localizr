@@ -22,7 +22,7 @@ namespace Localizr
         /// <summary>
         /// Current culture
         /// </summary>
-        CultureInfo? CurrentCulture { get; }
+        CultureInfo CurrentCulture { get; }
 
         /// <summary>
         /// Observable available cultures
@@ -50,7 +50,7 @@ namespace Localizr
         /// <param name="refreshAvailableCultures">Refresh AvailableCultures property during initialization (default: false)</param>
         /// <param name="token">Cancellation token</param>
         /// <returns>True if initialization succeed</returns>
-        Task<bool> InitializeAsync(CultureInfo? culture = null, bool tryParents = true, bool refreshAvailableCultures = false, CancellationToken token = default);
+        Task<bool> InitializeAsync(CultureInfo culture = null, bool tryParents = true, bool refreshAvailableCultures = false, CancellationToken token = default);
 
         /// <summary>
         /// Get localized key

@@ -1,8 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>Respawnsive</Company>
+    <Description>Localizr helps to manage various text resources type (resx, json, xml, database, etc), from various origin (assembly, web service, database, etc), for various cultures, and all mixable.</Description>
+    <PackageProjectUrl>https://github.com/Respawnsive/Localizr</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Localizr.Resx;
 
 namespace Localizr
@@ -10,7 +9,7 @@ namespace Localizr
     {
         private readonly IList<Type> _textProviderTypes;
 
-        public LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType) : base(localizrOptions)
+        internal LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType) : base(localizrOptions)
         {
             _textProviderTypes = new List<Type>{mainTextProviderType};
         }
@@ -35,7 +34,7 @@ namespace Localizr
         /// <param name="initializationCulture">Culture used for auto initialization</param>
         /// <returns></returns>
         public virtual ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true,
-            bool refreshAvailableCultures = true, CultureInfo? initializationCulture = null)
+            bool refreshAvailableCultures = true, CultureInfo initializationCulture = null)
         {
             Options.AutoInitialize = true;
             Options.TryParents = tryParents;
@@ -51,7 +50,7 @@ namespace Localizr
         /// <typeparam name="TResxTextProvider">Type of resx text provider</typeparam>
         /// <param name="invariantCulture"></param>
         /// <returns></returns>
-        public virtual ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo? invariantCulture = null)
+        public virtual ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider
         {
             var textProviderType = typeof(TResxTextProvider);

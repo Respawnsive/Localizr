@@ -15,8 +15,8 @@ namespace Localizr.Resx
     public class ResxTextProvider<T> : IResxTextProvider<T> where T : class
     {
         private readonly ResourceManager _resourceManager;
-        private TaskCompletionSource<IList<CultureInfo>>? _availableCulturesTcs;
-        private TaskCompletionSource<IDictionary<string, string>>? _textResourcesTcs;
+        private TaskCompletionSource<IList<CultureInfo>> _availableCulturesTcs;
+        private TaskCompletionSource<IDictionary<string, string>> _textResourcesTcs;
 
         public ResxTextProvider(ITextProviderOptions<ResxTextProvider<T>> textProviderOptions)
         {
@@ -24,7 +24,7 @@ namespace Localizr.Resx
             _resourceManager = new ResourceManager(typeof(T));
         }
 
-        public CultureInfo? InvariantCulture { get; }
+        public CultureInfo InvariantCulture { get; }
 
         public Task<IList<CultureInfo>> GetAvailableCulturesAsync(CancellationToken token = default)
         {

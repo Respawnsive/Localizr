@@ -6,7 +6,7 @@ namespace Localizr
 {
     public class LocalizrOptions : ILocalizrOptions
     {
-        public LocalizrOptions(Func<ITextProviderOptions, ITextProvider> textProviderFactory, Func<ILocalizrOptions, ILocalizrInitializationHandler>? initializationHandlerFactory, Func<IEnumerable<ITextProvider>, ILocalizrInitializationHandler, ILocalizrManager> localizrManagerFactory)
+        public LocalizrOptions(Func<ITextProviderOptions, ITextProvider> textProviderFactory, Func<ILocalizrOptions, ILocalizrInitializationHandler> initializationHandlerFactory, Func<IEnumerable<ITextProvider>, ILocalizrInitializationHandler, ILocalizrManager> localizrManagerFactory)
         {
             TextProvidersFactories = new List<Func<ITextProviderOptions, ITextProvider>> { textProviderFactory };
             InitializationHandlerFactory = initializationHandlerFactory;
@@ -25,8 +25,8 @@ namespace Localizr
 
         public bool RefreshAvailableCultures { get; set; } = false;
 
-        public CultureInfo? InitializationCulture { get; set; } = null;
+        public CultureInfo InitializationCulture { get; set; } = null;
 
-        public CultureInfo? DefaultInvariantCulture { get; set; } = null;
+        public CultureInfo DefaultInvariantCulture { get; set; } = null;
     }
 }

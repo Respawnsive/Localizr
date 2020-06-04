@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 
 namespace Localizr
 {
@@ -10,7 +7,7 @@ namespace Localizr
         /// <summary>
         /// Culture used as invariant (default = InvariantCulture)
         /// </summary>
-        CultureInfo? InvariantCulture { get; set; }
+        CultureInfo InvariantCulture { get; set; }
     }
 
     public interface ITextProviderOptions<out TTextProvider> : ITextProviderOptions where TTextProvider : ITextProvider

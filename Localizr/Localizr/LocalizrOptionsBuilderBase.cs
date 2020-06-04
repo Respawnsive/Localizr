@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Localizr.Resx;
-
-namespace Localizr
+﻿namespace Localizr
 {
     public abstract class LocalizrOptionsBuilderBase<TLocalizrOptions> : ILocalizrOptionsBuilder<TLocalizrOptions> where TLocalizrOptions : class, ILocalizrOptions
     {

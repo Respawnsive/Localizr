@@ -35,7 +35,7 @@ namespace Localizr
 
         public LocalizrState Status { get; private set; }
 
-        public CultureInfo? CurrentCulture { get; private set; }
+        public CultureInfo CurrentCulture { get; private set; }
 
         public IObservable<IList<CultureInfo>> WhenAvailableCulturesChanged() => _availableCulturesChanged;
 
@@ -85,7 +85,7 @@ namespace Localizr
             }
         }
 
-        public virtual async Task<bool> InitializeAsync(CultureInfo? culture = null, bool tryParents = true, bool refreshAvailableCultures = false, CancellationToken token = default)
+        public virtual async Task<bool> InitializeAsync(CultureInfo culture = null, bool tryParents = true, bool refreshAvailableCultures = false, CancellationToken token = default)
         {
             var isFirstInitialization = Status == LocalizrState.Uninitialized;
             try

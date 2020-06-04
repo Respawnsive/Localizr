@@ -5,7 +5,7 @@ namespace Localizr
 {
     public class LocalizrExtendedOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrExtendedOptions>, ILocalizrExtendedOptionsBuilder
     {
-        public LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions) : base(localizrOptions)
+        internal LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions) : base(localizrOptions)
         {
         }
 
@@ -19,7 +19,7 @@ namespace Localizr
         }
 
         public ILocalizrExtendedOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true,
-            CultureInfo? initializationCulture = null)
+            CultureInfo initializationCulture = null)
         {
             Options.AutoInitialize = true;
             Options.TryParents = tryParents;
@@ -35,7 +35,7 @@ namespace Localizr
         /// <typeparam name="TTextProvider">Type of extra text provider</typeparam>
         /// <param name="invariantCulture">Culture used as invariant for this text provider (default: null = InvariantCulture)</param>
         /// <returns></returns>
-        public virtual ILocalizrExtendedOptionsBuilder AddTextProvider<TTextProvider>(CultureInfo? invariantCulture = null)
+        public virtual ILocalizrExtendedOptionsBuilder AddTextProvider<TTextProvider>(CultureInfo invariantCulture = null)
             where TTextProvider : class, ITextProvider =>
             AddTextProvider(typeof(TTextProvider), invariantCulture);
 
@@ -45,7 +45,7 @@ namespace Localizr
         /// <param name="textProviderType">Type of extra text provider</param>
         /// <param name="invariantCulture">Culture used as invariant for this text provider (default: null = InvariantCulture)</param>
         /// <returns></returns>
-        public virtual ILocalizrExtendedOptionsBuilder AddTextProvider(Type textProviderType, CultureInfo? invariantCulture = null)
+        public virtual ILocalizrExtendedOptionsBuilder AddTextProvider(Type textProviderType, CultureInfo invariantCulture = null)
         {
             if (!typeof(ITextProvider).IsAssignableFrom(textProviderType))
                 throw new ArgumentException($"Your text provider class must inherit from {nameof(ITextProvider)} interface or derived");

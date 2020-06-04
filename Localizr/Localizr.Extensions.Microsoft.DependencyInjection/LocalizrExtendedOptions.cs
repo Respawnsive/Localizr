@@ -8,12 +8,12 @@ namespace Localizr
     {
         public LocalizrExtendedOptions(Type textProviderType, Type initializationHandlerType, Type localizrManagerType) : base(null, null, null)
         {
-            TextProviderTypes = new Dictionary<Type, CultureInfo?> { { textProviderType, null } };
+            TextProviderTypes = new Dictionary<Type, CultureInfo> { { textProviderType, null } };
             InitializationHandlerType = initializationHandlerType;
             LocalizrManagerType = localizrManagerType;
         }
 
-        public IDictionary<Type, CultureInfo?> TextProviderTypes { get; }
+        public IDictionary<Type, CultureInfo> TextProviderTypes { get; }
         public Type LocalizrManagerType { get; }
         public Type InitializationHandlerType { get; }
     }

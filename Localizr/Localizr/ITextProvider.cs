@@ -10,7 +10,7 @@ namespace Localizr
         /// <summary>
         /// Culture used as invariant (default = InvariantCulture)
         /// </summary>
-        CultureInfo? InvariantCulture { get; }
+        CultureInfo InvariantCulture { get; }
 
         /// <summary>
         /// Get all available cultures from the provider

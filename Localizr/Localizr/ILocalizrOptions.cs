@@ -12,7 +12,7 @@ namespace Localizr
         bool AutoInitialize { get; }
         bool TryParents { get; }
         bool RefreshAvailableCultures { get; }
-        CultureInfo? InitializationCulture { get; }
-        CultureInfo? DefaultInvariantCulture { get; }
+        CultureInfo InitializationCulture { get; }
+        CultureInfo DefaultInvariantCulture { get; }
     }
 }
