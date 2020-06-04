@@ -6,12 +6,27 @@ namespace Localizr
 {
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Register a <see cref="LocalizrManager"/> singleton instance for a main text provider
+        /// </summary>
+        /// <typeparam name="TTextProvider">Your main text provider</typeparam>
+        /// <param name="services">The service collection</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr<TTextProvider>(this IServiceCollection services,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null)
             where TTextProvider : class, ITextProvider => AddLocalizr(services, typeof(TTextProvider),
             typeof(LocalizrInitializationHandler),
             typeof(LocalizrManager), optionsBuilder);
 
+        /// <summary>
+        /// Register a <see cref="LocalizrManager"/> singleton instance for a main text provider with a custom <see cref="ILocalizrInitializationHandler"/> implementation
+        /// </summary>
+        /// <typeparam name="TTextProvider">Your main text provider</typeparam>
+        /// <typeparam name="TLocalizrInitializationHandler">Your <see cref="ILocalizrInitializationHandler"/> implementation class</typeparam>
+        /// <param name="services">The service collection</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr<TTextProvider, TLocalizrInitializationHandler>(
             this IServiceCollection services,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null)
@@ -20,6 +35,15 @@ namespace Localizr
             typeof(TTextProvider),
             typeof(TLocalizrInitializationHandler), typeof(LocalizrManager), optionsBuilder);
 
+        /// <summary>
+        /// Register a custom <see cref="ILocalizrManager"/> implementation singleton instance for a main text provider with a custom <see cref="ILocalizrInitializationHandler"/> implementation
+        /// </summary>
+        /// <typeparam name="TTextProvider">Your main text provider</typeparam>
+        /// <typeparam name="TLocalizrInitializationHandler">Your <see cref="ILocalizrInitializationHandler"/> implementation class</typeparam>
+        /// <typeparam name="TLocalizrManager">Your <see cref="ILocalizrManager"/> implementation class</typeparam>
+        /// <param name="services">The service collection</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr<TTextProvider, TLocalizrInitializationHandler, TLocalizrManager>(
             this IServiceCollection services,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null)
@@ -29,17 +53,41 @@ namespace Localizr
             typeof(TLocalizrInitializationHandler),
             typeof(TLocalizrManager), optionsBuilder);
 
+        /// <summary>
+        /// Register a <see cref="LocalizrManager"/> singleton instance for a main text provider
+        /// </summary>
+        /// <param name="services">The service collection</param>
+        /// <param name="textProviderType">Your main text provider</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null) => AddLocalizr(services, textProviderType,
             typeof(LocalizrInitializationHandler),
             typeof(LocalizrManager), optionsBuilder);
 
+        /// <summary>
+        /// Register a <see cref="LocalizrManager"/> singleton instance for a main text provider with a custom <see cref="ILocalizrInitializationHandler"/> implementation
+        /// </summary>
+        /// <param name="services">The service collection</param>
+        /// <param name="textProviderType">Your main text provider</param>
+        /// <param name="initializationHandlerType">Your <see cref="ILocalizrInitializationHandler"/> implementation class</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType,
             Type initializationHandlerType,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null) => AddLocalizr(services, textProviderType,
             initializationHandlerType,
             typeof(LocalizrManager), optionsBuilder);
 
+        /// <summary>
+        /// Register a custom <see cref="ILocalizrManager"/> implementation singleton class instance for a main text provider with a custom <see cref="ILocalizrInitializationHandler"/> implementation
+        /// </summary>
+        /// <param name="services">The service collection</param>
+        /// <param name="textProviderType">Your main text provider</param>
+        /// <param name="initializationHandlerType">Your <see cref="ILocalizrInitializationHandler"/> implementation class</param>
+        /// <param name="localizrManagerType">Your <see cref="ILocalizrManager"/> implementation class</param>
+        /// <param name="optionsBuilder">Some options</param>
+        /// <returns>The service collection</returns>
         public static IServiceCollection AddLocalizr(this IServiceCollection services, Type textProviderType,
             Type initializationHandlerType, Type localizrManagerType,
             Action<ILocalizrExtendedOptionsBuilder> optionsBuilder = null)
