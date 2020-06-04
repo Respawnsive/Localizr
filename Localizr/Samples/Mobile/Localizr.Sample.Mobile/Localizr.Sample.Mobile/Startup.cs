@@ -13,7 +13,7 @@ namespace Localizr.Sample.Mobile
     {
         protected override void ConfigureServices(IServiceCollection services)
         {
-            services.UseLocalizr<ResxTextProvider<MobileResources>>(builder =>
+            services.AddLocalizr<ResxTextProvider<MobileResources>>(builder =>
                 builder.AddTextProvider<ResxTextProvider<AppResources>>()
                     .WithDefaultInvariantCulture(CultureInfo.CreateSpecificCulture("en-US"))
                     .WithAutoInitialization());

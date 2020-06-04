@@ -13,11 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localizr.Sample.Console", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localizr.Extensions.Microsoft.DependencyInjection", "Localizr.Extensions.Microsoft.DependencyInjection\Localizr.Extensions.Microsoft.DependencyInjection.csproj", "{D0A48FCB-F506-4AB7-B377-05490E23EFAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shiny.Integrations.Localizr", "Shiny.Integrations.Localizr\Shiny.Integrations.Localizr.csproj", "{F60345B0-D208-4F5C-AA27-8FF65926F4EC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{FF6C6C3D-70CC-4B55-97A3-51692A34D2F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localizr.Sample.Mobile", "Samples\Mobile\Localizr.Sample.Mobile\Localizr.Sample.Mobile\Localizr.Sample.Mobile.csproj", "{F20E04F4-C3E5-4742-8FC4-A927FC201DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localizr.Sample.Mobile", "Samples\Mobile\Localizr.Sample.Mobile\Localizr.Sample.Mobile\Localizr.Sample.Mobile.csproj", "{F20E04F4-C3E5-4742-8FC4-A927FC201DB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localizr.Sample.Mobile.Android", "Samples\Mobile\Localizr.Sample.Mobile\Localizr.Sample.Mobile.Android\Localizr.Sample.Mobile.Android.csproj", "{538EF40E-001E-42F0-BBC4-B6EF1FBE304F}"
 EndProject
@@ -135,30 +133,6 @@ Global
 		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Release|iPhone.Build.0 = Release|Any CPU
 		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D0A48FCB-F506-4AB7-B377-05490E23EFAC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|Any CPU.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|iPhone.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|iPhone.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.AppStore|iPhoneSimulator.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|iPhone.Build.0 = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{F60345B0-D208-4F5C-AA27-8FF65926F4EC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{F20E04F4-C3E5-4742-8FC4-A927FC201DB2}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
 		{F20E04F4-C3E5-4742-8FC4-A927FC201DB2}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
 		{F20E04F4-C3E5-4742-8FC4-A927FC201DB2}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU

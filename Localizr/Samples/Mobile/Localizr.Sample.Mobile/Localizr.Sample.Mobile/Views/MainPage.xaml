@@ -9,7 +9,7 @@
              Title="{Binding Title}">
 
     <Grid>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Vertical">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Vertical">
             <Picker ItemsSource="{Binding Cultures}" 
                     ItemDisplayBinding="{Binding DisplayName}"
                     SelectedItem="{Binding SelectedCulture}"/>
