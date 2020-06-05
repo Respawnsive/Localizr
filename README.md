@@ -5,8 +5,8 @@ Localizr is a .Net Standard 2.0 library helpful when managing various text resou
 
 |Project|NuGet|
 |-------|-----|
-|Localizr|[![NuGet](https://img.shields.io/nuget/v/Localizr.svg?maxAge=2592000)](https://www.nuget.org/packages/Localizr/)|
-|Localizr.Extensions.Microsoft.DependencyInjection|[![NuGet](https://img.shields.io/nuget/v/Localizr.Extensions.Microsoft.DependencyInjection.svg?maxAge=2592000)](https://www.nuget.org/packages/Localizr.Extensions.Microsoft.DependencyInjection/)|
+|Localizr|[![NuGet](https://img.shields.io/nuget/v/Localizr.svg)](https://www.nuget.org/packages/Localizr/)|
+|Localizr.Extensions.Microsoft.DependencyInjection|[![NuGet](https://img.shields.io/nuget/v/Localizr.Extensions.Microsoft.DependencyInjection.svg)](https://www.nuget.org/packages/Localizr.Extensions.Microsoft.DependencyInjection/)|
 
 Install the NuGet package of your choice:
 
