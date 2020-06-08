@@ -32,9 +32,8 @@ namespace Localizr
             return this;
         }
 
-        public ILocalizrOptionsBuilder WithInitializationHandler<TInitializationHandler>(
-            Func<ILocalizrOptions, TInitializationHandler> initializationHandlerFactory)
-            where TInitializationHandler : class, ILocalizrInitializationHandler
+        public ILocalizrOptionsBuilder WithInitializationHandler(
+            Func<ILocalizrOptions, ILocalizrInitializationHandler> initializationHandlerFactory)
         {
             Options.InitializationHandlerFactory = initializationHandlerFactory;
 

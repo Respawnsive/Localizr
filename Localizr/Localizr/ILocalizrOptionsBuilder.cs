@@ -30,12 +30,10 @@ namespace Localizr
         /// <summary>
         /// Specify a custom initialization handler
         /// </summary>
-        /// <typeparam name="TInitializationHandler">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class</typeparam>
         /// <param name="initializationHandlerFactory">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class factory</param>
         /// <returns>An <see cref="ILocalizrOptionsBuilder"/> implementation instance</returns>
-        ILocalizrOptionsBuilder WithInitializationHandler<TInitializationHandler>(
-            Func<ILocalizrOptions, TInitializationHandler> initializationHandlerFactory)
-            where TInitializationHandler : class, ILocalizrInitializationHandler;
+        ILocalizrOptionsBuilder WithInitializationHandler(
+            Func<ILocalizrOptions, ILocalizrInitializationHandler> initializationHandlerFactory);
 
         /// <summary>
         /// Add some extra resx text providers
