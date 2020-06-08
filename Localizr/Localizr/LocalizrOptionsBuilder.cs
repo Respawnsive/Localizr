@@ -32,6 +32,15 @@ namespace Localizr
             return this;
         }
 
+        public ILocalizrOptionsBuilder WithInitializationHandler<TInitializationHandler>(
+            Func<ILocalizrOptions, TInitializationHandler> initializationHandlerFactory)
+            where TInitializationHandler : class, ILocalizrInitializationHandler
+        {
+            Options.InitializationHandlerFactory = initializationHandlerFactory;
+
+            return this;
+        }
+
         public virtual ILocalizrOptionsBuilder AddTextProvider<TResxTextProvider>(CultureInfo invariantCulture = null)
             where TResxTextProvider : class, IResxTextProvider
         {

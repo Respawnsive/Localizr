@@ -29,6 +29,17 @@ namespace Localizr
             return this;
         }
 
+        public ILocalizrExtendedOptionsBuilder WithInitializationHandler<TInitializationHandler>()
+            where TInitializationHandler : class, ILocalizrInitializationHandler =>
+            WithInitializationHandler(typeof(TInitializationHandler));
+
+        public ILocalizrExtendedOptionsBuilder WithInitializationHandler(Type initializationHandlerType)
+        {
+            Options.InitializationHandlerType = initializationHandlerType;
+
+            return this;
+        }
+
         public virtual ILocalizrExtendedOptionsBuilder AddTextProvider<TTextProvider>(CultureInfo invariantCulture = null)
             where TTextProvider : class, ITextProvider =>
             AddTextProvider(typeof(TTextProvider), invariantCulture);

@@ -24,6 +24,21 @@ namespace Localizr
         ILocalizrExtendedOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo initializationCulture = null);
 
         /// <summary>
+        /// Specify a custom initialization handler
+        /// </summary>
+        /// <typeparam name="TInitializationHandler">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class</typeparam>
+        /// <returns>An <see cref="ILocalizrExtendedOptionsBuilder"/> implementation instance</returns>
+        ILocalizrExtendedOptionsBuilder WithInitializationHandler<TInitializationHandler>()
+            where TInitializationHandler : class, ILocalizrInitializationHandler;
+
+        /// <summary>
+        /// Specify a custom initialization handler
+        /// </summary>
+        /// <param name="initializationHandlerType">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class type</param>
+        /// <returns></returns>
+        ILocalizrExtendedOptionsBuilder WithInitializationHandler(Type initializationHandlerType);
+
+        /// <summary>
         /// Add some extra text providers
         /// </summary>
         /// <typeparam name="TTextProvider">Type of extra text provider</typeparam>

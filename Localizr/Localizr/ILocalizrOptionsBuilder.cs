@@ -28,6 +28,16 @@ namespace Localizr
         ILocalizrOptionsBuilder WithAutoInitialization(bool tryParents = true, bool refreshAvailableCultures = true, CultureInfo initializationCulture = null);
 
         /// <summary>
+        /// Specify a custom initialization handler
+        /// </summary>
+        /// <typeparam name="TInitializationHandler">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class</typeparam>
+        /// <param name="initializationHandlerFactory">Your custom <see cref="ILocalizrInitializationHandler"/> implementation class factory</param>
+        /// <returns>An <see cref="ILocalizrOptionsBuilder"/> implementation instance</returns>
+        ILocalizrOptionsBuilder WithInitializationHandler<TInitializationHandler>(
+            Func<ILocalizrOptions, TInitializationHandler> initializationHandlerFactory)
+            where TInitializationHandler : class, ILocalizrInitializationHandler;
+
+        /// <summary>
         /// Add some extra resx text providers
         /// </summary>
         /// <typeparam name="TResxTextProvider">Type of resx text provider</typeparam>
