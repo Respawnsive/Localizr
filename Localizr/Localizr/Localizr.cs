@@ -96,7 +96,6 @@ namespace Localizr
         {
             var builder = new LocalizrOptionsBuilder(
                 new LocalizrOptions(textProviderFactory,
-                    localizrOptions => new LocalizrInitializationHandler(localizrOptions),
                     localizrManagerFactory),
                 typeof(TTextProvider));
 

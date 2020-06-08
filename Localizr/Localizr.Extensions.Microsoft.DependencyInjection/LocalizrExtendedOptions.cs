@@ -6,7 +6,7 @@ namespace Localizr
 {
     public class LocalizrExtendedOptions : LocalizrOptions, ILocalizrExtendedOptions
     {
-        public LocalizrExtendedOptions(Type textProviderType, Type initializationHandlerType, Type localizrManagerType) : base(null, null, null)
+        public LocalizrExtendedOptions(Type textProviderType, Type initializationHandlerType, Type localizrManagerType) : base(null, null)
         {
             TextProviderTypes = new Dictionary<Type, CultureInfo> { { textProviderType, null } };
             InitializationHandlerType = initializationHandlerType;

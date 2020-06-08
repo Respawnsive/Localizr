@@ -7,11 +7,10 @@ namespace Localizr
     public class LocalizrOptions : ILocalizrOptions
     {
         public LocalizrOptions(Func<ITextProviderOptions, ITextProvider> textProviderFactory,
-            Func<ILocalizrOptions, ILocalizrInitializationHandler> initializationHandlerFactory,
             Func<IEnumerable<ITextProvider>, ILocalizrInitializationHandler, ILocalizrManager> localizrManagerFactory)
         {
             TextProvidersFactories = new List<Func<ITextProviderOptions, ITextProvider>> {textProviderFactory};
-            InitializationHandlerFactory = initializationHandlerFactory;
+            InitializationHandlerFactory = localizrOptions => new LocalizrInitializationHandler(localizrOptions);
             LocalizrManagerFactory = localizrManagerFactory;
         }
 
