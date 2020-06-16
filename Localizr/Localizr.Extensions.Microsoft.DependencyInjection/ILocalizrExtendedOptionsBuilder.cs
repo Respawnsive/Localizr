@@ -3,9 +3,12 @@ using System.Globalization;
 
 namespace Localizr
 {
-    public interface ILocalizrExtendedOptionsBuilder : ILocalizrOptionsBuilder<LocalizrExtendedOptions>
+    public interface ILocalizrExtendedOptionsBuilder
     {
-        new ILocalizrExtendedOptions LocalizrOptions { get; }
+        /// <summary>
+        /// Localizr options
+        /// </summary>
+        ILocalizrExtendedOptions LocalizrOptions { get; }
 
         /// <summary>
         /// Specify the default culture used as invariant for all text providers

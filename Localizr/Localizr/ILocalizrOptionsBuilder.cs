@@ -4,13 +4,13 @@ using Localizr.Resx;
 
 namespace Localizr
 {
-    public interface ILocalizrOptionsBuilder<out TLocalizrOptions> where TLocalizrOptions : class, ILocalizrOptions
+    public interface ILocalizrOptionsBuilder
     {
+        /// <summary>
+        /// Localizr options
+        /// </summary>
         ILocalizrOptions LocalizrOptions { get; }
-    }
 
-    public interface ILocalizrOptionsBuilder : ILocalizrOptionsBuilder<LocalizrOptions>
-    {
         /// <summary>
         /// Specify the default culture used as invariant for all text providers
         /// </summary>

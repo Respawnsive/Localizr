@@ -5,9 +5,9 @@ namespace Localizr
 {
     public class LocalizrInitializationHandler : ILocalizrInitializationHandler
     {
-        private readonly ILocalizrOptions _localizrOptions;
+        private readonly ILocalizrOptionsBase _localizrOptions;
 
-        public LocalizrInitializationHandler(ILocalizrOptions localizrOptions)
+        public LocalizrInitializationHandler(ILocalizrOptionsBase localizrOptions)
         {
             _localizrOptions = localizrOptions;
         }

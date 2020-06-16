@@ -1,6 +1,4 @@
 using Prism.Ioc;
-using Xamarin.Essentials.Interfaces;
-using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,8 +19,6 @@ namespace Localizr.Sample.Mobile
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
-
             containerRegistry.RegisterForNavigation<NavigationPage>();
         }
     }

@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc.Extensions" Version="7.2.0.1054" />
+    <PackageReference Include="Prism.Microsoft.DependencyInjection.Extensions" Version="7.2.0.1054" />
     <PackageReference Include="ReactiveUI.Fody" Version="11.4.1" />
+    <PackageReference Include="Shiny.Core" Version="1.2.0.1686" />
     <PackageReference Include="Shiny.Prism" Version="7.2.0.1054" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.2" />

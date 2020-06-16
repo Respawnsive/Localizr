@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace Localizr
 {
-    public interface ILocalizrExtendedOptions : ILocalizrOptions
+    public interface ILocalizrExtendedOptions : ILocalizrOptionsBase
     {
         IDictionary<Type, CultureInfo> TextProviderTypes { get; }
         Type LocalizrManagerType { get; }

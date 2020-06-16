@@ -5,14 +5,18 @@ using Localizr.Resx;
 
 namespace Localizr
 {
-    public class LocalizrOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrOptions>, ILocalizrOptionsBuilder
+    public class LocalizrOptionsBuilder : ILocalizrOptionsBuilder
     {
+        protected readonly LocalizrOptions Options;
         private readonly IList<Type> _textProviderTypes;
 
-        internal LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType) : base(localizrOptions)
+        internal LocalizrOptionsBuilder(LocalizrOptions localizrOptions, Type mainTextProviderType)
         {
+            Options = localizrOptions;
             _textProviderTypes = new List<Type>{mainTextProviderType};
         }
+
+        public ILocalizrOptions LocalizrOptions => Options;
 
         public ILocalizrOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture)
         {

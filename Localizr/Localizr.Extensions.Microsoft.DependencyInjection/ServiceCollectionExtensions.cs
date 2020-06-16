@@ -65,7 +65,7 @@ namespace Localizr
 
             var localizrOptions = CreateLocalizrExtendedOptions(textProviderType,
                 localizrManagerType, optionsBuilder);
-            services.AddSingleton<ILocalizrOptions>(localizrOptions);
+            services.AddSingleton<ILocalizrOptionsBase>(localizrOptions);
 
             foreach (var optionsTextProviderType in localizrOptions.TextProviderTypes)
             {

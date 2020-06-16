@@ -3,13 +3,16 @@ using System.Globalization;
 
 namespace Localizr
 {
-    public class LocalizrExtendedOptionsBuilder : LocalizrOptionsBuilderBase<LocalizrExtendedOptions>, ILocalizrExtendedOptionsBuilder
+    public class LocalizrExtendedOptionsBuilder : ILocalizrExtendedOptionsBuilder
     {
-        internal LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions) : base(localizrOptions)
+        protected readonly LocalizrExtendedOptions Options;
+
+        internal LocalizrExtendedOptionsBuilder(LocalizrExtendedOptions localizrOptions)
         {
+            Options = localizrOptions;
         }
 
-        public new ILocalizrExtendedOptions LocalizrOptions => Options;
+        public ILocalizrExtendedOptions LocalizrOptions => Options;
 
         public ILocalizrExtendedOptionsBuilder WithDefaultInvariantCulture(CultureInfo defaultInvariantCulture)
         {

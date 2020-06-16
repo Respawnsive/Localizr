@@ -4,9 +4,9 @@ using System.Globalization;
 
 namespace Localizr
 {
-    public class LocalizrExtendedOptions : LocalizrOptions, ILocalizrExtendedOptions
+    public class LocalizrExtendedOptions : LocalizrOptionsBase, ILocalizrExtendedOptions
     {
-        public LocalizrExtendedOptions(Type textProviderType, Type initializationHandlerType, Type localizrManagerType) : base(null, null)
+        public LocalizrExtendedOptions(Type textProviderType, Type initializationHandlerType, Type localizrManagerType)
         {
             TextProviderTypes = new Dictionary<Type, CultureInfo> { { textProviderType, null } };
             InitializationHandlerType = initializationHandlerType;
