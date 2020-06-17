@@ -16,7 +16,7 @@ Install the NuGet package of your choice:
 ## Getting started
 
 Examples here are based on a Xamarin.Forms app working with Shiny. 
-You'll find a sample Xamarin.Forms app browsing code, implementing Localizr with Shiny, Prism and DryIoc all together.
+You'll find a sample Xamarin.Forms app browsing code, implementing Localizr with Shiny, Prism and MS DI all together.
 
 You'll find another sample app but .Net Core console this time, implementing Localizr without anything else (static) and also with MS DI (extensions).
 
@@ -232,7 +232,7 @@ services.AddLocalizr<YourDbSyncTextProviderClass>(optionsBuilder =>
 - As it's the first launch, my database is empty so it will load and cache "en" localized resources from YourMobileResourcesDesignerClass first, then from YourSharedResourcesDesignerClass
 - At this moment, AvailableCultures should contain English, French, French (France), Spanish.
 - Then, somewhere in my loading script, my data service pull resources from remote server into local database.
-- From there, I can manualy initialize again the plugin to refresh AvailableCultures wich should now conatin English, French, French (France), Italian, Spanish.
+- From there, I can manualy initialize again the plugin to refresh AvailableCultures wich should now contain English, French, French (France), Italian, Spanish.
 
 ### Other configurations
 
