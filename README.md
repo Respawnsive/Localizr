@@ -18,6 +18,24 @@ Install the NuGet package of your choice:
 Examples here are based on a Xamarin.Forms app working with Shiny. 
 You'll find a sample Xamarin.Forms app browsing code, implementing Localizr with Shiny, Prism and MS DI all together.
 
+> **NOTE - Xamarin/Shiny/Prism/Container**: 
+> 
+> Localizr registers a collection of implementation types (say ```ImplementationTypeA```, ```ImplementationTypeB```, etc) from a unique service type (say ```IServiceType```).
+> 
+> Then it resolves it all as ```IEnumerable<IServiceType>``` but with some limitations for now:
+> - Prism.DryIoc.Extensions and Prism.Unity.Extensions: it will resolve only the last registered implementation, but should be fully supported soon ([DryIoc issue](https://github.com/dansiegel/Prism.Container.Extensions/issues/124) and [Unity issue](https://github.com/dansiegel/Prism.Container.Extensions/issues/125)).
+> - Prism.Microsoft.DependencyInjection.Extensions: it will work as expected, but will stuck on a NavigationService issue ([issue](https://github.com/dansiegel/Prism.Container.Extensions/issues/113))
+> 
+> There's also an issue about it on the [Shiny side](https://github.com/shinyorg/shiny/issues/369) for information.
+> 
+> While waiting for fixes: 
+> - If you don't need the multiple text provider feature, you can definitly use Localizr with DryIoc or Unity and play with the last or single TextProvider you registered.
+> - If you do need the multiple text provider feature with everything else: 
+>     - I personally use the working Prism.Microsoft.DependencyInjection.Extensions, but as a project reference and with the NavigationService fix suggested in the PR. 
+>     - You can still use the static approach and register the resulting ILocalizrManager instance from a factory into your container
+> 
+> I'll remove this note when fixed
+
 You'll find another sample app but .Net Core console this time, implementing Localizr without anything else (static) and also with MS DI (extensions).
 
 So please, take a look at the samples :)
