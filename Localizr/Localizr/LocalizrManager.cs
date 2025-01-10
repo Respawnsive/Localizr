@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Localizr
         private readonly Subject<IList<CultureInfo>> _availableCulturesChanged;
         private readonly AsyncLock _availableCulturesLocker;
         private readonly AsyncLock _initializationLocker;
+        private readonly ConcurrentDictionary<string, string> _missingTextCache;
 
         public LocalizrManager(IEnumerable<ITextProvider> textProviders, ILocalizrInitializationHandler initializationHandler)
         {
@@ -28,6 +30,7 @@ namespace Localizr
             _availableCulturesChanged = new Subject<IList<CultureInfo>>();
             _availableCulturesLocker = new AsyncLock();
             _initializationLocker = new AsyncLock();
+            _missingTextCache = new ConcurrentDictionary<string, string>();
             AvailableCultures = new List<CultureInfo>();
         }
 
@@ -97,6 +100,7 @@ namespace Localizr
                         var foundProvidersLocalizations =
                             new Dictionary<CultureInfo, IList<IDictionary<string, string>>>();
                         _providersLocalizations.Clear();
+                        _missingTextCache.Clear();
                         _stateChanged.OnNext(Status = LocalizrState.Initializing);
 
                         if (refreshAvailableCultures)
@@ -183,20 +187,30 @@ namespace Localizr
 
         public virtual string GetText(string key)
         {
+            if(string.IsNullOrWhiteSpace(key))
+                return string.Empty;
+
+            if (_missingTextCache.TryGetValue(key, out var text))
+                return text;
+
             try
             {
                 foreach (var providerLocalizations in _providersLocalizations)
                 {
-                    if (providerLocalizations.TryGetValue(key, out var value))
-                        return value;
+                    if (providerLocalizations.TryGetValue(key, out text))
+                        return text;
                 }
-
-                return $"[{key}]";
             }
             catch (Exception)
             {
-                return $"[{key}]";
+                // Ignored
             }
+
+            // Cache missing key
+            text = $"[{key}]";
+            _missingTextCache.TryAdd(key, text);
+
+            return text;
         }
     }
 }
