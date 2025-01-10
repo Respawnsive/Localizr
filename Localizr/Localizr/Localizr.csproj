@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Company>Respawnsive</Company>
     <Description>Localizr helps to manage various text resources type (resx, json, xml, database, etc), from various origin (assembly, web service, database, etc), for various cultures, and all mixable.</Description>
     <PackageProjectUrl>https://github.com/Respawnsive/Localizr</PackageProjectUrl>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
-    <PackageReference Include="System.Reactive" Version="4.4.1" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+    <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
-
 </Project>

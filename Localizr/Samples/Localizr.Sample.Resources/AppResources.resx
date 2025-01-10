@@ -120,4 +120,7 @@
   <data name="Key1" xml:space="preserve">
     <value>App value 1</value>
   </data>
+  <data name="Key2" xml:space="preserve">
+    <value>App value 2</value>
+  </data>
 </root>

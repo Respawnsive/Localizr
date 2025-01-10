@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Localizr.Sample.Mobile.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Localizr.Sample.Mobile.ViewModels;assembly=Localizr.Sample.Mobile"
+    Title="{Binding Title}"
+    x:DataType="viewModels:MainPageViewModel">
+
+    <Grid>
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="Center">
+            <Picker
+                ItemDisplayBinding="{Binding DisplayName}"
+                ItemsSource="{Binding Cultures}"
+                SelectedItem="{Binding SelectedCulture}" />
+            <StackLayout Orientation="Vertical">
+                <Label Text="{Binding [Key1]}" />
+                <Label Text="{Binding [Key2]}" />
+            </StackLayout>
+        </StackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="Unlocalized keys for selected language appear as [THE_KEY]"
+            VerticalOptions="End" />
+    </Grid>
+
+</ContentPage>

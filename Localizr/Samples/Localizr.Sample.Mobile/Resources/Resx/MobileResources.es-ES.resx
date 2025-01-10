@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Key1" xml:space="preserve">
-    <value>valore app 1</value>
+    <value>Valor de móvil 1</value>
   </data>
   <data name="Key2" xml:space="preserve">
-    <value>valore app 2</value>
+    <value>Valor de móvil 2</value>
   </data>
 </root>

@@ -207,11 +207,5 @@
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.2" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Localizr.Sample.Mobile\Localizr.Sample.Mobile.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
-      <Name>Localizr.Sample.Mobile</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
