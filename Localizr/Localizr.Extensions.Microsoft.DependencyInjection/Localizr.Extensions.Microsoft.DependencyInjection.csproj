@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+	<TargetFrameworks>net472;netstandard2.0;net6.0;net8.0</TargetFrameworks>
+	<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <RootNamespace>Localizr</RootNamespace>
     <Company>Respawnsive</Company>
     <Description>Localizr helps to manage various text resources type (resx, json, xml, database, etc), from various origin (assembly, web service, database, etc), for various cultures, and all mixable.</Description>
